@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
-  const [userName, setuserName] = useState("");
+  const [name, setName] = useState("");
   const [salary, setSalary] = useState("");
   const [section, setSection] = useState("");
   const [position, setPosition] = useState("");
@@ -14,7 +14,7 @@ const AddUser = () => {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5001/users", {
-        userName,
+        name,
         salary,
         section,
         position
@@ -35,9 +35,9 @@ const AddUser = () => {
               <input
                 type="text"
                 className="input"
-                value={userName}
-                onChange={(e) => setuserName(e.target.value)}
-                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="name"
               />
             </div>
           </div>
@@ -49,7 +49,7 @@ const AddUser = () => {
                 className="input"
                 value={salary}
                 onChange={(e) => setSalary(e.target.value)}
-                placeholder="Salary"
+                placeholder="salary"
               />
             </div>
           </div>
@@ -81,22 +81,6 @@ const AddUser = () => {
             </div>
             
           </div>
-          
-          
-          {/* <div className="field">
-            <label className="label">section</label>
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
-            </div>
-          </div> */}
           <div className="field">
             <button type="submit" className="button is-success">
               Save
