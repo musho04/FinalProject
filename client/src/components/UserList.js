@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Button from "../common/Button";
 
 const UserList = () => {
   const [users, setUser] = useState([]);
@@ -11,7 +12,6 @@ const UserList = () => {
 
   const getUsers = async () => {
     const response = await axios.get("http://localhost:5001/users");
-    console.log("AAAAAAAAAAAAAAA", response.data);
     setUser(response.data);
   };
 
@@ -55,12 +55,7 @@ const UserList = () => {
                   >
                     Edit
                   </Link>
-                  <button
-                    onClick={() => deleteUser(user.id)}
-                    className="button is-small is-danger"
-                  >
-                    Delete
-                  </button>
+                  <Button sbmit={() => deleteUser(user.id)} nameClass="button is-small is-danger" event="Delete"/>
                 </td>
               </tr>
             ))}

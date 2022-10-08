@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Button from "../common/Button";
+import Entrance from "../common/Entrance";
+// import Input from "../common/Input";
+// import Forma from "../common/Forma";
 
 const AddUser = () => {
   const [name, setName] = useState("");
@@ -29,63 +33,11 @@ const AddUser = () => {
     <div className="columns mt-5 is-centered">
       <div className="column is-half">
         <form onSubmit={saveUser}>
-          <div className="field">
-            <label className="label">Name</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="name"
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">salary</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={salary}
-                onChange={(e) => setSalary(e.target.value)}
-                placeholder="salary"
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">section</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={section}
-                onChange={(e) => setSection(e.target.value)}
-                placeholder="section"
-              />
-              
-            </div>
-            
-          </div>
-          <div className="field">
-            <label className="label">position</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={position}
-                onChange={(e) => setPosition(e.target.value)}
-                placeholder="position"
-              />
-              
-            </div>
-            
-          </div>
-          <div className="field">
-            <button type="submit" className="button is-success">
-              Save
-            </button>
-          </div>
+          <Entrance name="Name" valueName={name} eventName={(e) => setName(e.target.value)}/>
+          <Entrance name="Salary" valueName={salary} eventName={(e) => setSalary(e.target.value)}/>
+          <Entrance name="Section" valueName={section} eventName={(e) => setSection(e.target.value)}/>
+          <Entrance name="Position" valueName={position} eventName={(e) => setPosition(e.target.value)}/>
+            <Button eventName="submit" nameClass="button is-success" event="Save" />
         </form>
       </div>
     </div>
