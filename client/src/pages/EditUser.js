@@ -17,8 +17,9 @@ const EditUser = () => {
 
     const updateUser = async (e) => {
         e.preventDefault();
+        console.log("====", process.env.REACT_APP_URL );
         try {
-            await axios.put(`http://localhost:5001/users/${id}`, {
+            await axios.put(`${process.env.REACT_APP_URL}/users/${id}`, {
                 ...formik.values
             });
             navigate("/");
@@ -28,7 +29,7 @@ const EditUser = () => {
     };
     
     const getUserById = async () => {
-        const response = await axios.get(`http://localhost:5001/users/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_URL}/users/${id}`);
         const data = response.data;
         console.log(response.data, '1111111111111111111111');
         setWidgets({ name: data.name, salary: data.salary.amount, section: data.section.title, position: data.position.title })
@@ -70,11 +71,11 @@ const EditUser = () => {
         <div className="columns mt-5 is-centered">
             <div className="column is-half">
                 <form onSubmit={updateUser}>
-                    <Input name="Name" valueName={formik.values.name} eventName={(e) => setInputValue("name", e.target.value)} valErrName={formik.errors.name} />
-                    <Input name="Salary" valueName={formik.values.salary} eventName={(e) => setInputValue("salary", e.target.value)} valErrName={formik.errors.salary} />
-                    <Input name="Section" valueName={formik.values.section} eventName={(e) => setInputValue("section", e.target.value)} valErrName={formik.errors.section} />
-                    <Input name="Position" valueName={formik.values.position} eventName={(e) => setInputValue("position", e.target.value)} valErrName={formik.errors.position} />
-                    <Button eventName="submit" nameClass="button is-success" event="Update" formValid={!formik.isValid} />
+                    <Input name="name" onBlur={formik.handleBlur} valueName={formik.values.name} eventName={(e) => setInputValue("name", e.target.value)} valErrName={formik.errors.name} touch={formik.touched.name} />
+                    <Input name="salary" onBlur={formik.handleBlur} valueName={formik.values.salary} eventName={(e) => setInputValue("salary", e.target.value)} valErrName={formik.errors.salary} touch={formik.touched.salary}/>
+                    <Input name="section" onBlur={formik.handleBlur} valueName={formik.values.section} eventName={(e) => setInputValue("section", e.target.value)} valErrName={formik.errors.section} touch={formik.touched.section}/>
+                    <Input name="position" onBlur={formik.handleBlur} valueName={formik.values.position} eventName={(e) => setInputValue("position", e.target.value)} valErrName={formik.errors.position} touch={formik.touched.position}/>
+                    <Button eventName="submit" onBlur={formik.handleBlur} nameClass="button is-success" event="Update" formValid={!formik.isValid} />
                 </form>
             </div>
         </div>
