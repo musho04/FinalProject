@@ -1,7 +1,7 @@
 import React  from "react";
 import PropTypes from "prop-types"
 
-function Entrance(props) {
+function Input(props) {
     const {
         name, valueName, eventName
     } = props;
@@ -21,16 +21,16 @@ function Entrance(props) {
     );
 }
 
-Entrance.propTypes = {
+Input.propTypes = {
     name: PropTypes.string,
     valueName: PropTypes.string,
     eventName: PropTypes.string
 };
 
-Entrance.defaultProps = {
+Input.defaultProps = {
     name: "",
     valueName: "",
     eventName: ""
 }
 
-export default Entrance
+export default Input
