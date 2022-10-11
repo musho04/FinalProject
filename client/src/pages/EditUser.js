@@ -5,7 +5,8 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import { useFormik } from "formik";
 import { useCallback } from "react";
-import * as yup from "yup";
+import { UserSchema } from "../validation/User.shema.js";
+
 
 const EditUser = () => {
     const [widgets, setWidgets] = useState({ name: '', salary: '', section: '', position: '' });
@@ -35,13 +36,6 @@ const EditUser = () => {
         setWidgets({ name: data.name, salary: data.salary.amount, section: data.section.title, position: data.position.title })
     };
 
-    const schema = yup.object().shape({
-        name: yup.string().min(3).required(),
-        salary: yup.number().required(),
-        section: yup.string().min(3).required(),
-        position: yup.string().min(3).required(),
-    });
-
     const formik = useFormik({
         initialValues: {
             name: widgets.name,
@@ -50,7 +44,7 @@ const EditUser = () => {
             position: widgets.position
         },
         enableReinitialize: true,
-        validationSchema: schema,
+        validationSchema: UserSchema,
         onSubmit: updateUser,
     });
 

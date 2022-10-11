@@ -25,7 +25,6 @@ function Input(props) {
 
         />
         {valErrName && touch ? <small style={{ color: "red" }}>{valErrName}</small> : null}
-        {/* {touch ? <small style={{color: "red"}}>{touch}</small> : null} */}
       </div>
     </div>
   );

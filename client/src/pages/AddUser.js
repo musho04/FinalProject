@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useCallback } from "react";
-import * as yup from "yup";
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../components/Input.js";
+import Button from "../components/Button.js";
+import { UserSchema } from "../validation/User.shema.js";
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -27,21 +27,21 @@ const AddUser = () => {
 
   };
 
-  const schema = yup.object().shape({
-    name: yup.string().min(3).required(),
-    salary: yup.number().required(),
-    section: yup.string().min(3).required(),
-    position: yup.string().min(3).required(),
-  });
+  const FILEDES = {
+    NAME:'name',
+    SALARY: 'salary',
+    SECTION: 'section',
+    POSITION: 'position'
+  }
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      salary: "",
-      section: "",
-      position: ""
+      [FILEDES.NAME]: "",
+      [FILEDES.SALARY]: "",
+      [FILEDES.SECTION]: "",
+      [FILEDES.POSITION]: ""
     },
-    validationSchema: schema,
+    validationSchema: UserSchema,
     onSubmit: saveUser,
   });
 
@@ -65,7 +65,7 @@ console.log("aaaaaaaaaaaaaaaaa", formik.touched)
           {!!formik.errors.name}
 
           <div className="field">
-            <Button eventName="submit" nameClass="button is-success" event="Save" formValid={!formik.isValid}/>
+            <Button eventName="submit" onBlur={formik.handleBlur} nameClass="button is-success" event="Save" formValid={!formik.isValid}/>
           </div>
         </form>
       </div>
