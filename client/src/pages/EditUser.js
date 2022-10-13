@@ -10,8 +10,6 @@ import { selecterUser } from "../selectors/userListSelector";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, getUsers } from "../features/user/userSlice.js";
 
-
-
 const EditUser = () => {
     const dispatch = useDispatch()
     const data = useSelector(selecterUser);
@@ -22,7 +20,6 @@ const EditUser = () => {
     useEffect(() => {
         dispatch(getUser(id))
     }, []);
-
 
     const updateUser = async (e) => {
         try {
@@ -59,8 +56,6 @@ const EditUser = () => {
         [formik]
     );
 
-
-
     return (
         <div className="columns mt-5 is-centered">
             <div className="column is-half">
@@ -68,7 +63,7 @@ const EditUser = () => {
                     <Input name="salary" onBlur={formik.handleBlur} value={formik.values.salary} event={(e) => setInputValue("salary", e.target.value)} error={formik.errors.salary} touched={formik.touched.salary} />
                     <Input name="section" onBlur={formik.handleBlur} value={formik.values.section} event={(e) => setInputValue("section", e.target.value)} error={formik.errors.section} touched={formik.touched.section} />
                     <Input name="position" onBlur={formik.handleBlur} value={formik.values.position} event={(e) => setInputValue("position", e.target.value)} error={formik.errors.position} touched={formik.touched.position} />
-                    <Button eventName="submit" onBlur={formik.handleBlur} nameClass="button is-success" event="Update" formValid={!formik.isValid} onClick={updateUser}/>
+                    <Button eventName="submit" onBlur={formik.handleBlur} className="button is-success" event="Update" disabled={!formik.isValid} onClick={updateUser}/>
             </div>
         </div>
 

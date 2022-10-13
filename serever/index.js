@@ -4,12 +4,10 @@ import db from "./config/Database.js";
 import initModels from "./models/index.js"
 import UserRoute from "../serever/routes/UserRoute.js";
 
-
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(UserRoute);
-
 
 const start = () => {
     db
@@ -19,7 +17,7 @@ const start = () => {
         return db.sync();
       })
       .then(() => {
-        app.listen(5001, () => {
+        app.listen(process.env.PORT, () => {
         });
       })
       .catch((error) => {
@@ -28,4 +26,3 @@ const start = () => {
   };
 
 start();
-

@@ -3,14 +3,14 @@ import PropTypes from "prop-types"
 
 function Button(props) {
     const {
-        eventName, nameClass, event, onClick, formValid
+        eventName, className, event, onClick, disabled
     } = props;
     return (
         <button 
         type={eventName} 
-        className={nameClass}
+        className={className}
         onClick={onClick}
-        disabled={formValid}
+        disabled={disabled}
         >
         {event}
       </button>
@@ -19,18 +19,18 @@ function Button(props) {
 
 Button.propTypes = {
     eventName: PropTypes.string,
-    nameClass: PropTypes.string,
+    className: PropTypes.string,
     event: PropTypes.string,
     onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-    formValid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+    disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
 
 Button.defaultProps = {
     eventName: "",
-    nameClass: "",
+    className: "",
     event: "",
     onClick: "",
-    formValid: ""
+    disabled: ""
 
 }
 

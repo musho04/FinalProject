@@ -58,7 +58,7 @@ const AddUser = () => {
         <Input name="salary" onBlur={formik.handleBlur} value={formik.values.salary} event={(e) => setInputValue("salary", e.target.value)} error={formik.errors.salary} touched={formik.touched.salary} />
         <Input name="section" onBlur={formik.handleBlur} value={formik.values.section} event={(e) => setInputValue("section", e.target.value)} error={formik.errors.section} touched={formik.touched.section} />
         <Input name="position" onBlur={formik.handleBlur} value={formik.values.position} event={(e) => setInputValue("position", e.target.value)} error={formik.errors.position} touched={formik.touched.position} />
-        <Button eventName="submit" onBlur={formik.handleBlur} nameClass="button is-success" event="Save" formValid={!formik.isValid} onClick={saveUser} />
+        <Button eventName="submit" onBlur={formik.handleBlur} className="button is-success" event="Save" disabled={!formik.isValid} onClick={saveUser} />
         {!!formik.errors.name}
       </div>
     </div>

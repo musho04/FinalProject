@@ -5,7 +5,6 @@ import {getUsers, deleteUsers} from "../features/user/userSlice.js";
 import {selecterUser} from "../selectors/userListSelector"
 import Button from "../components/Button";
 
-
 const UserList = () => {
   const dispatch = useDispatch()
   const data = useSelector(selecterUser);
@@ -19,13 +18,11 @@ const UserList = () => {
     dispatch(deleteUsers(id))
   };
 
-
-
   return (
     <div className="columns mt-5 is-centered">
       <div className="column is-half">
         <Link to={`add`} className="button is-success">
-          Add New
+          Add New User
         </Link>
         <table className="table is-striped is-fullwidth">
           <thead>
@@ -52,8 +49,7 @@ const UserList = () => {
                   >
                     Edit
                   </Link>
-                  {/* <button onClick={() => deleteUser(user.id)} className="button is-small is-danger"  > Delete </button> */}
-                  <Button onClick={() => deleteUser(user.id)} nameClass="button is-small is-danger" event="Delete"/>
+                  <Button onClick={() => deleteUser(user.id)} className="button is-small is-danger" event="Delete"/>
                 </td>
               </tr>
             ))}
