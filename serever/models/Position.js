@@ -22,24 +22,3 @@ const Position = {
 }
 
 export default Position
-
-//--------------------------------------------
-// import db from "../config/Database.js";
-
-
-// const Position = db.connect(function (err) {
-//     const query = `\
-//     CREATE TABLE \`Position\`(\
-//         \`positionId\` int not null auto_increment,\
-//         \`poxos\` varchar(255),\
-//         primary key (\`positionId\`)
-//     );\
-//     `
-//     if (err) throw err;
-//     db.query(query, function (err, res) {
-//         if (err) throw err;
-//         return res.JSON;
-//     })
-// })
-
-// export default Position

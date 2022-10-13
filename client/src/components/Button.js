@@ -3,13 +3,13 @@ import PropTypes from "prop-types"
 
 function Button(props) {
     const {
-        eventName, nameClass, event, sbmit, formValid
+        eventName, nameClass, event, onClick, formValid
     } = props;
     return (
         <button 
         type={eventName} 
         className={nameClass}
-        onClick={sbmit}
+        onClick={onClick}
         disabled={formValid}
         >
         {event}
@@ -21,15 +21,15 @@ Button.propTypes = {
     eventName: PropTypes.string,
     nameClass: PropTypes.string,
     event: PropTypes.string,
-    sbmit: PropTypes.string,
-    formValid: PropTypes.string
+    onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    formValid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
 
 Button.defaultProps = {
     eventName: "",
     nameClass: "",
     event: "",
-    sbmit: "",
+    onClick: "",
     formValid: ""
 
 }

@@ -1,13 +1,8 @@
 import { getModel } from "../models/index.js";
-import Position from "../models/Position.js";
-import Salary from "../models/Salary.js";
-import User from "../models/User.js";
-
 
 export const getUsers = async (req, res) => {
     try {
         const User = getModel('user');
-        // const users = await User.findAll({ include: [{all: true}] })
         const users = await User.findAll({
             include: [{
                 association: "salary",
@@ -23,23 +18,14 @@ export const getUsers = async (req, res) => {
             }
             ]
         },)
-        console.log(JSON.stringify(users, null, 2));
-        // const response = await User.findAll();
-        // console.log("AAAAAAAAAAa===============", users);
         res.status(200).json(users);
     } catch (error) {
-        // console.log("bbbbbbbbbbbbBBB", error.message);
     }
 }
 
 export const getUserById = async (req, res) => {
     try {
         const User = getModel('user');
-        // const response = await User.findOne({
-        //     where:{
-        //         id: req.params.id
-        //     }
-        // });
         const response = await User.findOne({
             include: [{
                 association: "salary",
@@ -76,14 +62,12 @@ export const createUser = async (req, res) => {
 
         //Create tabls------------------------------------------
         const [salary] = await Salary.findOrCreate({
-            // // association: { include: ['id']},
             attributes: { include: ['id'] },
             where: {
                 amount: req.body.salary
             }
         },)
 
-        // console.log("=======", salary);
         const [section] = await Section.findOrCreate({
             association: { include: ['id'] },
             where: {
@@ -93,7 +77,6 @@ export const createUser = async (req, res) => {
 
         const [position] = await Position.findOrCreate({
             association: { include: ['id'] },
-            // attributes: { exclude: ['title'] },
             where: {
                 title: req.body.position
             }
@@ -118,7 +101,6 @@ export const updateUser = async (req, res) => {
         const Salary = getModel('salary')
         const Section = getModel('section')
         const Position = getModel('position')
-        console.log("=====", req.body);
 
         const [salary] = await Salary.findOrCreate({
             attributes: { include: ['id'] },
@@ -167,11 +149,8 @@ export const deleteUser = async (req, res) => {
             where: {
                 id: req.params.id
             }
-            // truncate: true
         });
-
-        console.log("===========", req.params.id);
-        res.status(200).json({ msg: "User Deleted" });
+        res.status(200).json({id: +req.params.id, msg: "User Deleted" });
     } catch (error) {
         console.log(error.message);
     }

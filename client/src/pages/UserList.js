@@ -1,28 +1,25 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {getUsers, deleteUsers} from "../features/user/userSlice.js";
+import {selecterUser} from "../selectors/userListSelector"
 import Button from "../components/Button";
 
+
 const UserList = () => {
-  const [users, setUser] = useState([]);
+  const dispatch = useDispatch()
+  const data = useSelector(selecterUser);
 
   useEffect(() => {
-    getUsers();
+    dispatch(getUsers())
   }, []);
 
-  const getUsers = async () => {
-    const response = await axios.get(`${process.env.REACT_APP_URL}/users`);
-    setUser(response.data);
+
+  const deleteUser = (id) => {
+    dispatch(deleteUsers(id))
   };
 
-  const deleteUser = async (id) => {
-    try {
-      await axios.delete(`${process.env.REACT_APP_URL}/users/${id}`);
-      getUsers();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
 
   return (
     <div className="columns mt-5 is-centered">
@@ -41,7 +38,7 @@ const UserList = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
+            {data?.map((user, index) => (
               <tr key={user.id}>
                 <td>{index + 1}</td>
                 <td>{user.name}</td>
@@ -55,7 +52,8 @@ const UserList = () => {
                   >
                     Edit
                   </Link>
-                  <Button sbmit={() => deleteUser(user.id)} nameClass="button is-small is-danger" event="Delete"/>
+                  {/* <button onClick={() => deleteUser(user.id)} className="button is-small is-danger"  > Delete </button> */}
+                  <Button onClick={() => deleteUser(user.id)} nameClass="button is-small is-danger" event="Delete"/>
                 </td>
               </tr>
             ))}

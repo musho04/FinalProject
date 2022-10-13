@@ -1,14 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types"
-// import { string } from "yup";
 
 function Input(props) {
   const {
-    name, valueName, eventName, valErrName, touch, onBlur
+    name, value, event, error, touched, onBlur
   } = props;
-  console.log(name);
-  console.log("valErrName===========", valErrName);
-  console.log("touch===========", touch);
 
   return (
     <div className="field">
@@ -17,14 +13,14 @@ function Input(props) {
         <input
           type="text"
           className="input"
-          value={valueName}
-          onChange={eventName}
+          value={value}
+          onChange={event}
           name={name}
           placeholder={name}
           onBlur={(e) => onBlur(e)}
 
         />
-        {valErrName && touch ? <small style={{ color: "red" }}>{valErrName}</small> : null}
+        {error && touched ? <small style={{ color: "red" }}>{error}</small> : null}
       </div>
     </div>
   );
@@ -32,18 +28,18 @@ function Input(props) {
 
 Input.propTypes = {
   name: PropTypes.string,
-  valueName: PropTypes.string,
-  eventName: PropTypes.string,
-  valErrName: PropTypes.string,
-  touch: PropTypes.string
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  event: PropTypes.func,
+  error: PropTypes.string,
+  touched: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
 
 Input.defaultProps = {
   name: "",
-  valueName: "",
-  eventName: "",
-  valErrName: "",
-  touch: ""
+  value: "",
+  event: "",
+  error: "",
+  touched: ""
 }
 
 export default Input

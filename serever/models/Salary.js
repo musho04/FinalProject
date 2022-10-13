@@ -22,24 +22,3 @@ const Salary = {
 }
 
 export default Salary
-
-//------------------------------------------
-// import db from "../config/Database.js";
-
-
-// const Salary = db.connect(function (err) {
-//     const query = `
-//     CREATE TABLE Salary(
-//         salaryId int not null auto_increment,
-//         salary int not null,
-//         primary key (salaryId)
-//     );
-//     `
-//     if (err) throw err;
-//     db.query(query, function (err, res) {
-//         if (err) throw err;
-//         return res.JSON;
-//     })
-// })
-
-// export default Salary

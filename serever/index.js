@@ -15,13 +15,11 @@ const start = () => {
     db
       .authenticate()
       .then(() => {
-        console.log('Connection has been established successfully.');
         initModels(db);
         return db.sync();
       })
       .then(() => {
         app.listen(5001, () => {
-          console.log(`App listening on http://localhost:5001`);
         });
       })
       .catch((error) => {
@@ -31,4 +29,3 @@ const start = () => {
 
 start();
 
-// app.listen(5000, ()=> console.log('Server up and running...'));
